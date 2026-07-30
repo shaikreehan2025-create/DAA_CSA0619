@@ -11,11 +11,11 @@
 ## Repository Structure
 
 ```
-Question_3/
+co2_at3/
 │
-├── Pair_Sum.c
-├── Pair_Sum_Report.pdf
-├── Output_Screenshot.png
+├── source code.c
+├── P_Report.pdf
+
 └── README.md
 ```
 
@@ -64,10 +64,8 @@ Only a constant amount of extra memory is used.
 ---
 
 ## Files Included
-
-- **Pair_Sum.c** – C source code
-- **Pair_Sum_Report.pdf** – Report containing theory, algorithm, analysis, screenshots, and result
-- **Output_Screenshot.png** – Program execution output
+- **source coden.c** – C source code
+- **Report.pdf** – Report containing theory, algorithm, analysis, screenshots, and result
 - **README.md** – Project description
 
 ---
