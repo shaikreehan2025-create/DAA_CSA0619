@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <limits.h>
+
+// Function to find minimum of three values
+int minOfThree(int a, int b, int c)
+{
+    int min = a;
+
+    if (b < min)
+        min = b;
+
+    if (c < min)
+        min = c;
+
+    return min;
+}
+
+// Dynamic Programming solution
+int minimumFallingPathSum(int matrix[][100], int n)
+{
+    int dp[100][100];
+
+    // Copy the first row
+    for (int j = 0; j < n; j++)
+    {
+        dp[0][j] = matrix[0][j];
+    }
+
+    // Build the DP table
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            int left = INT_MAX;
+            int down = dp[i - 1][j];
+            int right = INT_MAX;
+
+            // Diagonal-left
+            if (j > 0)
+                left = dp[i - 1][j - 1];
+
+            // Diagonal-right
+            if (j < n - 1)
+                right = dp[i - 1][j + 1];
+
+            dp[i][j] = matrix[i][j] +
+                       minOfThree(left, down, right);
+        }
+    }
+
+    // Find minimum value in the last row
+    int result = dp[n - 1][0];
+
+    for (int j = 1; j < n; j++)
+    {
+        if (dp[n - 1][j] < result)
+            result = dp[n - 1][j];
+    }
+
+    return result;
+}
+
+int main()
+{
+    int n;
+    int matrix[100][100];
+
+    printf("Minimum Falling Path Sum using Dynamic Programming\n");
+    printf("====================================================\n");
+
+    printf("Enter matrix size: ");
+    scanf("%d", &n);
+
+    printf("Enter the matrix elements:\n");
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    int result = minimumFallingPathSum(matrix, n);
+
+    printf("\nMin Sum = %d\n", result);
+
+    return 0;
+}
